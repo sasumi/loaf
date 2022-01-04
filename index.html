@@ -28,13 +28,21 @@
 		return document.querySelector(selector);
 	};
 
+	const rand = (min, max) => {
+		return Math.ceil(Math.random()*max+min);
+	};
+
+	const randSec = (min, max)=>{
+		return rand(min*1000, max*1000);
+	}
+
 	const reboot = () => {
 		getEl('#updating').style.display = 'none';
 		getEl('#rebooting').style.display = '';
-		setTimeout(updating, 10000);
+		setTimeout(updating, randSec(10, 15));
 	};
 
-	const updating = ()=>{
+	const updating = () => {
 		var c = 0;
 		getEl('#updating').style.display = '';
 		getEl('#rebooting').style.display = 'none';
@@ -46,7 +54,7 @@
 			}
 			c++;
 			eCd.innerHTML = c + '%';
-			setTimeout(cd, Math.ceil(Math.random() * 3000));
+			setTimeout(cd, randSec(3,6));
 		};
 		cd();
 	};
