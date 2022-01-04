@@ -1,0 +1,7 @@
+* {margin:0; padding:0}
+html {background-color:#006dae; color:white; font-family:"Microsoft YaHei",serif; font-size:22px;}
+body {height:100vh; overflow:hidden;}
+
+.main {text-align:center; position:fixed; width:100vw; top:50%; margin-top:-100px; line-height:1.6}
+.loading-icon {background:url("spinner.gif") no-repeat; background-size:contain; display:block; margin:0 auto 10px auto; width:64px; height:64px;}
+.main .warning {position:fixed; bottom:0; width:100vw; margin-bottom:2em}

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="main" id="updating">
+	<i class="loading-icon"></i>
+	<p class="state-text">
+		正在进行更新 <span class="count-down">0%</span> <br>
+		请保持计算机打开状态。
+	</p>
+	<div class="warning">计算机可能会重启几次</div>
+</div>
+
+<div class="main" id="rebooting" style="display:none;">
+	<i class="loading-icon"></i>
+	<p class="state-text">正在重启计算机···</p>
+</div>
+
+<script>
+	const getEl = selector => {
+		return document.querySelector(selector);
+	};
+
+	const reboot = () => {
+		getEl('#updating').style.display = 'none';
+		getEl('#rebooting').style.display = '';
+		setTimeout(updating, 10000);
+	};
+
+	const updating = ()=>{
+		var c = 0;
+		getEl('#updating').style.display = '';
+		getEl('#rebooting').style.display = 'none';
+		let eCd = getEl('#updating .count-down');
+		var cd = () => {
+			if(c >= 100){
+				reboot();
+				return;
+			}
+			c++;
+			eCd.innerHTML = c + '%';
+			setTimeout(cd, Math.ceil(Math.random() * 3000));
+		};
+		cd();
+	};
+	updating();
+</script>
+</body>
+</html>
