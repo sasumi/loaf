@@ -5,60 +5,15 @@
 	<meta name="viewport"
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
-	<link rel="stylesheet" href="style.css">
+	<title>LOAF</title>
+	<style>
+		body {padding:2em; background-color:#ccc; color:#333;}
+		a {color:#444; border-radius:3px; box-shadow:5px 5px 5px #aaa; background-color:#eee; display:inline-block; border:1px solid #555; text-decoration:none; border-left-color:#999; border-top-color:#999; padding:0.5em 1em;}
+	</style>
 </head>
 <body>
-<div class="main" id="updating">
-	<i class="loading-icon"></i>
-	<p class="state-text">
-		正在进行更新 <span class="count-down">0%</span> <br>
-		请保持计算机打开状态。
-	</p>
-	<div class="warning">计算机可能会重启几次</div>
-</div>
-
-<div class="main" id="rebooting" style="display:none;">
-	<i class="loading-icon"></i>
-	<p class="state-text">正在重启计算机···</p>
-</div>
-
-<script>
-	const getEl = selector => {
-		return document.querySelector(selector);
-	};
-
-	const rand = (min, max) => {
-		return Math.ceil(Math.random()*max+min);
-	};
-
-	const randSec = (min, max)=>{
-		return rand(min*1000, max*1000);
-	}
-
-	const reboot = () => {
-		getEl('#updating').style.display = 'none';
-		getEl('#rebooting').style.display = '';
-		setTimeout(updating, randSec(10, 15));
-	};
-
-	const updating = () => {
-		var c = 0;
-		getEl('#updating').style.display = '';
-		getEl('#rebooting').style.display = 'none';
-		let eCd = getEl('#updating .count-down');
-		var cd = () => {
-			if(c >= 100){
-				reboot();
-				return;
-			}
-			c++;
-			eCd.innerHTML = c + '%';
-			setTimeout(cd, randSec(3,6));
-		};
-		cd();
-	};
-	updating();
-</script>
+<a href="win10.html">Windows 10</a>
+<a href="win8.html">Windows 8</a>
+<a href="">Mac OSX</a>
 </body>
 </html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Windows10 - LOAF</title>
+	<style>
+		* {margin:0; padding:0}
+		html {background-color:#180052; color:white; font-family:"Microsoft YaHei Light",serif; font-size:22px;}
+		body {height:100vh; overflow:hidden;}
+
+		.main {text-align:center; position:fixed; width:100vw; top:50%; margin-top:-100px; line-height:1.6}
+		.loading-icon {background:url("spinner.gif") no-repeat; background-size:contain; vertical-align:middle; display:inline-block; width:40px; height:40px;}
+		.main .warning {position:fixed; bottom:0; width:100vw; margin-bottom:2em}
+	</style>
+</head>
+<body>
+<div class="main" id="updating">
+	<p class="state-text">
+		<i class="loading-icon"></i>
+		Configuring Windows updates <br>
+		<span class="count-down">0%</span> complete <br>
+		Do not turn off your computer.
+	</p>
+</div>
+
+<div class="main" id="rebooting" style="display:none;">
+	<p class="state-text"><i class="loading-icon"></i> Restarting</p>
+</div>
+
+<script>
+	const getEl = selector => {
+		return document.querySelector(selector);
+	};
+
+	const rand = (min, max) => {
+		return Math.ceil(Math.random()*max+min);
+	};
+
+	const randSec = (min, max)=>{
+		return rand(min*1000, max*1000);
+	}
+
+	const reboot = () => {
+		getEl('#updating').style.display = 'none';
+		getEl('#rebooting').style.display = '';
+		setTimeout(updating, randSec(10, 15));
+	};
+
+	const updating = () => {
+		var c = 0;
+		getEl('#updating').style.display = '';
+		getEl('#rebooting').style.display = 'none';
+		let eCd = getEl('#updating .count-down');
+		var cd = () => {
+			if(c >= 100){
+				reboot();
+				return;
+			}
+			c++;
+			eCd.innerHTML = c + '%';
+			setTimeout(cd, randSec(3,6));
+		};
+		cd();
+	};
+	updating();
+</script>
+</body>
+</html>
