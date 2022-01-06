@@ -6,10 +6,12 @@
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Windows10 - LOAF</title>
+	<script src="common.js"></script>
 	<style>
 		* {margin:0; padding:0}
 		html {background-color:#180052; color:white; font-family:"Microsoft YaHei Light",serif; font-size:22px;}
 		body {height:100vh; overflow:hidden;}
+		:not(:root):fullscreen::backdrop {background-color:#180052}
 
 		.main {text-align:center; position:fixed; width:100vw; top:50%; margin-top:-100px; line-height:1.6}
 		.loading-icon {background:url("spinner.gif") no-repeat; background-size:contain; vertical-align:middle; display:inline-block; width:40px; height:40px;}
@@ -31,18 +33,6 @@
 </div>
 
 <script>
-	const getEl = selector => {
-		return document.querySelector(selector);
-	};
-
-	const rand = (min, max) => {
-		return Math.ceil(Math.random()*max+min);
-	};
-
-	const randSec = (min, max)=>{
-		return rand(min*1000, max*1000);
-	}
-
 	const reboot = () => {
 		getEl('#updating').style.display = 'none';
 		getEl('#rebooting').style.display = '';
@@ -65,7 +55,7 @@
 		};
 		cd();
 	};
-	updating();
+	updating();bindScreenToggle();
 </script>
 </body>
 </html>
